@@ -1,8 +1,9 @@
-package com.example.james.model;
+package com.fracta.james.model;
 
 import java.io.File;
-import java.util.List;
 import java.util.function.Predicate;
+
+import javax.validation.constraints.NotNull;
 
 import org.telegram.abilitybots.api.bot.AbilityBot;
 import org.telegram.abilitybots.api.objects.Ability;
@@ -168,9 +169,16 @@ public class BasicAbilityBot extends AbilityBot {
 	}
 	
 	public ReplyFlow directCommand() {
-		Reply saidLeft = Reply.of((bot, upd) -> silent.send("Sir, I've gone left", upd.getMessage()
+		Reply saidLeft = Reply.of((bot, upd) -> silent.send("Sir, I've gone left.", upd.getMessage()
 				.getChatId()),
-				hasMessageWith("left"));
+				hasMessageWith("go left or else"));
+		
+		ReplyFlow leftFlow = ReplyFlow.builder(db)
+				.action((bot,  upd) -> silent.send("I don't know how to go left.", upd.getMessage().getChatId()))
+				.onlyIf(hasMessageWith("left"))
+				.next(saidLeft)
+				.build();
+		
 		Reply saidRight = Reply.of((bot, upd) -> silent.send("Sir, I've gone right", upd.getMessage()
 				.getChatId()),
 				hasMessageWith("right"));
@@ -178,11 +186,12 @@ public class BasicAbilityBot extends AbilityBot {
 		return ReplyFlow.builder(db)
 				.action((bot, upd) -> silent.send("Command me to go left or right!", upd.getMessage().getChatId()))
 				.onlyIf(hasMessageWith("wake up"))
-				.next(saidLeft)
+				.next(leftFlow)
 				.next(saidRight)
 				.build();
 	}
 
+	@NotNull
 	private Predicate<Update> hasMessageWith(String msg) {
 		return upd -> upd.getMessage().getText().equalsIgnoreCase(msg);
 	}

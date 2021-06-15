@@ -1,4 +1,4 @@
-package com.example.james.model;
+package com.fracta.james.model;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;

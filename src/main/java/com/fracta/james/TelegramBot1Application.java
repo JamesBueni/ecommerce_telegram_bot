@@ -1,4 +1,4 @@
-package com.example.james;
+package com.fracta.james;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
-import com.example.james.model.BasicAbilityBot;
+import com.fracta.james.model.BasicAbilityBot;
 
 @SpringBootApplication
 public class TelegramBot1Application {
