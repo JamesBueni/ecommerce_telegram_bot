@@ -40,7 +40,7 @@ public class Order {
 	private float amount;
 	
 	@Column(nullable = false)
-	private LocalDateTime date;
+	private LocalDateTime creationDateTime;
 	
 	@OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@OnDelete(action = OnDeleteAction.CASCADE)
@@ -76,10 +76,10 @@ public class Order {
 	}
 
 	public LocalDateTime getDate() {
-		return date;
+		return creationDateTime;
 	}
 	public void setDate(LocalDateTime date) {
-		this.date = date;
+		this.creationDateTime = date;
 	}
 
 	public List<OrderItem> getItems() {
@@ -102,7 +102,7 @@ public class Order {
 				+ "id=" + id 
 				+ ", customer=" + customer
 				+ ", amount=" + amount
-				+ ", date=" + date
+				+ ", date=" + creationDateTime
 				+ ", items=" + items
 				+ ", status=" + status
 				+ "}";
@@ -110,7 +110,7 @@ public class Order {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, customer, amount, date, items, status);
+		return Objects.hash(id, customer, amount, creationDateTime, items, status);
 	}
 
 	@Override
@@ -121,7 +121,7 @@ public class Order {
 		var other = (Order) o;
 		return id == other.id
 				&& Objects.equals(amount, other.amount)
-				&& Objects.equals(date, other.date)
+				&& Objects.equals(creationDateTime, other.creationDateTime)
 				&& Objects.equals(customer, other.customer)
 				&& status == other.status
 				&& Objects.equals(items, other.items);
