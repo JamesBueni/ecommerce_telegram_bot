@@ -26,14 +26,14 @@ public class CartRepoDefault implements CartRepo {
 		IntStream.range(0, receivedCartItems.size())
 				.filter(i -> Long.valueOf(cartItem.getId()).equals(receivedCartItems.get(i).getId()))
 				.findFirst()
-				.ifPresent(i -> receivedCartItems.set(i, ClonerUtils.cloneObject(cartItem)));
+				.ifPresent(i -> receivedCartItems.set(i, CartItem.newInstanceOf(cartItem)));
 	}
 
 	@Override
 	public void saveCartItem(long chatId, CartItem cartItem) {
 		cartItems.computeIfAbsent(chatId, cartItems -> new ArrayList<>());
 		cartItem.setId(lastCartItemId.incrementAndGet());
-		cartItems.get(chatId).add(ClonerUtils.cloneObject(cartItem));
+		cartItems.get(chatId).add(CartItem.newInstanceOf(cartItem));
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class CartRepoDefault implements CartRepo {
 	public List<CartItem> findAllCartItemsByChatId(long chatId) {
 		cartItems.computeIfAbsent(chatId, cartItems -> new ArrayList<>());
 		return cartItems.get(chatId).stream()
-				.map(ClonerUtils::cloneObject)
+				.map(CartItem::newInstanceOf)
 				.collect(Collectors.toList());
 	}
 
@@ -61,7 +61,7 @@ public class CartRepoDefault implements CartRepo {
 		return cartItems.get(chatId).stream()
 				.filter(cartItem -> Long.valueOf(cartItem.getProduct().getId()).equals(productId))
 				.findFirst()
-				.map(ClonerUtils::cloneObject)
+				.map(CartItem::newInstanceOf)
 				.orElse(null);
 	}
 
@@ -78,7 +78,5 @@ public class CartRepoDefault implements CartRepo {
 	@Override
 	public long findPageNumberByChatId(long chatId) {
 		return cartPageNumbers.getOrDefault(chatId, 0L);
-	}
-	
-	
+	}	
 }

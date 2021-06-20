@@ -43,6 +43,10 @@ public class CartItem {
 		return product.getPrice() * quantity;
 	}
 	
+	public static CartItem newInstanceOf(CartItem cartItem) {
+		return new CartItem(cartItem.id, cartItem.product, cartItem.quantity);
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, product, quantity);

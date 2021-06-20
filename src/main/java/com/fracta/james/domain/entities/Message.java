@@ -34,6 +34,12 @@ public class Message {
 		
 	}
 	
+	private Message(long id, String name, String desc, String text) {
+		setId(id);
+		setName(name);
+		setText(text);
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -60,6 +66,10 @@ public class Message {
 	}
 	public void setText(String text) {
 		this.text = text;
+	}
+	
+	public static Message newInstanceOf(Message msg) {
+		return new Message(msg.id, msg.name, msg.desc, msg.text);
 	}
 
 	public void applyPlaceholder(MessagePlaceholder placeholder) {

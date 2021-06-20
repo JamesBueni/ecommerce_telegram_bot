@@ -41,7 +41,6 @@ public class MessageServiceCached implements MessageService {
 			msg = repo.findByName(messageName);
 			cachedMessages.put(messageName, msg);
 		}
-		return ClonerUtils.cloneObject(msg);
+		return Message.newInstanceOf(msg);
 	}
-
 }

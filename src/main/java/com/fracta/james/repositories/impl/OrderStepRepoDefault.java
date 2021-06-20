@@ -46,17 +46,17 @@ public class OrderStepRepoDefault implements OrderStepRepo {
 
 	@Override
 	public Order findCachedOrderByChatId(long chatId) {
-		return ClonerUtils.cloneObject(cachedOrders.get(chatId));
+		return Order.newInstanceOf(cachedOrders.get(chatId));
 	}
 
 	@Override
 	public void saveCachedOrder(long chatId, Order order) {
-		cachedOrders.put(chatId, ClonerUtils.cloneObject(order));		
+		cachedOrders.put(chatId, Order.newInstanceOf(order));		
 	}
 
 	@Override
 	public void updateCachedOrder(long chatId, Order order) {
-		cachedOrders.put(chatId, ClonerUtils.cloneObject(order));
+		cachedOrders.put(chatId, Order.newInstanceOf(order));
 	}
 
 	@Override
@@ -64,5 +64,4 @@ public class OrderStepRepoDefault implements OrderStepRepo {
 		cachedOrders.remove(chatId);
 		
 	}
-
 }

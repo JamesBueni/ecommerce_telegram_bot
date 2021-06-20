@@ -53,6 +53,16 @@ public class Order {
 	public Order() {
 		
 	}
+	
+	private Order(long id, Customer customer, float amount, LocalDateTime dateTime, List<OrderItem> items,
+			OrderStatus status) {
+		setId(id);
+		setCustomer(customer);
+		setAmount(amount);
+		setDate(dateTime);
+		setItems(items);
+		setStatus(status);
+	}
 
 	public long getId() {
 		return id;
@@ -95,6 +105,11 @@ public class Order {
 	public void setStatus(OrderStatus status) {
 		this.status = status;
 	}
+	
+	public static Order newInstanceOf(Order order) {
+		return new Order(order.id, order.customer, order.amount, order.creationDateTime, order.items,
+				order.status);
+	}
 
 	@Override
 	public String toString() {
@@ -126,8 +141,4 @@ public class Order {
 				&& status == other.status
 				&& Objects.equals(items, other.items);
 	}
-	
-	
-	
-
 }
