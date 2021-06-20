@@ -12,5 +12,4 @@ public interface OrderStepService {
 	void saveCachedOrder(long chatId, Order order);
 	void updateCachedOrder(long chatId, Order order);
 	void deleteCachedOrderByChatId(long chatId, Order order);
-	
 }
