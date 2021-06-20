@@ -39,6 +39,10 @@ public class CartItem {
 		this.quantity = quantity;
 	}
 	
+	public float getTotalPrice() {
+		return product.getPrice() * quantity;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, product, quantity);

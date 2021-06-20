@@ -34,6 +34,34 @@ public class Message {
 		
 	}
 	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+	public String getText() {
+		return text;
+	}
+	public void setText(String text) {
+		this.text = text;
+	}
+
 	public void applyPlaceholder(MessagePlaceholder placeholder) {
 		text = text.replace(placeholder.getPlaceholder(), placeholder.getReplacement().toString());
 	}
@@ -71,8 +99,4 @@ public class Message {
 				+ ", text=" + text 
 				+ "}";
 	}
-	
-	
-	
-	
 }

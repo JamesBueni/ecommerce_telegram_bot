@@ -3,18 +3,20 @@ package com.fracta.james.domain.models;
 import java.util.List;
 import java.util.Objects;
 
+import org.telegram.telegrambots.meta.api.objects.inlinequery.result.InlineQueryResult;
+
 public class InlineQuerySend {
 
 	private final long id;
 	private final String offset;
-	private final List<InlineQuerySend> results;
+	private final List<InlineQueryResult> results;
 	
-	public InlineQuerySend(long id, String offset, List<InlineQuerySend> results) {
+	public InlineQuerySend(long id, String offset, List<InlineQueryResult> results) {
 		this.id = id;
 		this.offset = offset;
 		this.results = results;
 	}
-	public InlineQuerySend(long id, List<InlineQuerySend> results) {
+	public InlineQuerySend(long id, List<InlineQueryResult> results) {
 		super();
 		this.id = id;
 		this.offset = null;
@@ -27,7 +29,7 @@ public class InlineQuerySend {
 	public String getOffset() {
 		return offset;
 	}
-	public List<InlineQuerySend> getResults() {
+	public List<InlineQueryResult> getResults() {
 		return results;
 	}
 	

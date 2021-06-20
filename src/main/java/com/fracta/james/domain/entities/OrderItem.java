@@ -43,6 +43,48 @@ public class OrderItem {
 	public OrderItem() {
 		
 	}
+	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	
+	public Order getOrder() {
+		return order;
+	}
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	
+	public float getProductPrice() {
+		return productPrice;
+	}
+	public void setProductPrice(float productPrice) {
+		this.productPrice = productPrice;
+	}
 
 	@Override
 	public int hashCode() {
@@ -73,7 +115,4 @@ public class OrderItem {
 				+ ", productPrice=" + productPrice
 				+ "}";
 	}
-	
-	
-	
 }
